@@ -1,6 +1,6 @@
 from requests import post
 from json import dumps
-#https://oapi.dingtalk.com/robot/send?access_token=5dd4ff5d073291cd2e2cd8ede59dab434a722b9b2e782e5d297e042b58fd33bd
+
 class bot:
     def __init__(self, kw, token):
         self.url='https://oapi.dingtalk.com/robot/send?access_token='+token
@@ -18,7 +18,3 @@ class bot:
         res = post(self.url, data=dumps(req), headers=self.head).json()
         if res['errmsg'] == 'ok': return res
         else: raise Exception(f'Error code: {res["errcode"]}; Error message: {res["errmsg"]}')
-if __name__ == '__main__':
-    lw = bot("[老王]", token='5dd4ff5d073291cd2e2cd8ede59dab434a722b9b2e782e5d297e042b58fd33bd')
-    r = lw.send_text("Hello World!")
-    print(r)
